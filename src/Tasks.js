@@ -27,6 +27,19 @@ export default (contact) => {
       <li><span role="img" aria-label="checkmark">✅</span> Add tags to the contact component</li>
       <li><span role="img" aria-label="checkmark">✅</span> Mark some contacts as favorites and show them on separate list</li>
       </ul>
+      <hr />
+      
+      <h3 id="module3tasks">Module #3 Tasks</h3>
+      <h4 id="basic-2">Basic</h4>
+      <ul>
+      <li><span role="img" aria-label="checkmark">✅</span>  Add searching the contacts by name</li>
+      <li><span role="img" aria-label="checkmark">✅</span>  Change search to include all fields</li>
+      </ul>
+      <h4 id="advanced-1">Advanced</h4>
+      <ul>
+      <li><span role="img" aria-label="checkmark">✅</span>  Add button to sort the contacts alphabetically. Clicking it should toggle sorting direction.</li>
+      <li><span role="img" aria-label="checkmark">✅</span>  Add an icon the the button (↑/↓) to indicate sorting direction.</li>
+      </ul>
 
       <hr />
     </div>
