@@ -1,7 +1,7 @@
 import React from 'react'
 import ContactList from './ContactList.js'
-import Search from './Search.js'
-import Sort from './Sort.js'
+import SearchWrap from '../containers/SearchWrap.js'
+import SortWrap from '../containers/SortWrap.js'
 
 export default ({contacts, search_query, favorites, mark_as_favorite, sort, sort_order}) => {
   return (
@@ -9,14 +9,12 @@ export default ({contacts, search_query, favorites, mark_as_favorite, sort, sort
       <div>
         <h3>Contacts</h3>
         <div className="float-right">
-          <Sort
+          <SortWrap
             sort={sort}
             sort_order={sort_order}
           />
         </div>
-        <Search 
-          search_query={search_query} 
-        />
+        <SearchWrap />
         <ContactList 
           contacts={contacts} 
           mark_as_favorite={mark_as_favorite}

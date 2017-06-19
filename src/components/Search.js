@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({search_query, search_input_value}) =>  {
+export default ({search_query}) =>  {
   return(
     <form>
       <input 

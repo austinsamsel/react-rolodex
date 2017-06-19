@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import Tasks from '../components/Tasks.js'
-import ContactsPage from '../components/ContactsPage.js'
+import ContactsPageWrap from '../containers/ContactsPageWrap.js'
 import ContactPageSingle from '../components/ContactPageSingle.js'
 import _ from 'lodash'
 require('es6-promise').polyfill()
@@ -97,18 +97,7 @@ class App extends Component {
           />
           <Route 
             path="/contacts" 
-            render={() => {
-              return (
-                <ContactsPage
-                  contacts={contacts}   
-                  search_query={this.state.search_query}
-                  favorites={this.state.favorites}
-                  mark_as_favorite={this.mark_as_favorite}
-                  sort={this.sort}
-                  sort_order={this.state.sort_order}
-                /> )
-              }
-            } 
+            component={ContactsPageWrap}
           />
           <Route 
             render={() => {
