@@ -5,7 +5,6 @@ import Search from '../components/Search.js'
 
 let SearchWrap = ({dispatch, search_query}) => {
   const query = (user_input) => {
-    console.log(user_input)
     dispatch(SearchQuery(user_input))
   }
   return(

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default ({contact, mark_as_favorite}) =>  {
-  console.log(mark_as_favorite)
   return(
     <span 
       onClick={ e => {
