@@ -25,6 +25,7 @@ export default ({contacts, mark_as_favorite}) => {
           <td><span role="img" aria-label="email">📱</span></td>
           <td><span role="img" aria-label="phone">📞</span></td>
           <td><span role="img" aria-label="address">🏠</span></td>
+          <td></td>
         </tr>
       </thead>
       <tbody>

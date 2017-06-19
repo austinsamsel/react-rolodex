@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import FavoriteWrap from '../containers/FavoriteWrap.js'
+import DeleteContactWrap from '../containers/DeleteContactWrap.js'
 
 export default ( props ) => {
   const contact = props;
@@ -27,6 +28,7 @@ export default ( props ) => {
       <td>{contact.email}</td>
       <td>{contact.phone}</td>
       <td>{contact.address}</td>
+      <td><DeleteContactWrap id={contact.id} /></td>
     </tr>
   )
 }
