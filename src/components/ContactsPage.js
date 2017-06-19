@@ -2,10 +2,12 @@ import React from 'react'
 import ContactList from './ContactList.js'
 import SearchWrap from '../containers/SearchWrap.js'
 import SortWrap from '../containers/SortWrap.js'
+import AddFormWrap from '../containers/AddFormWrap.js'
 
 export default ({contacts, search_query, order, favorites}) =>  {
   return(
     <div>
+       <AddFormWrap />
       <div className="float-right">
         <SortWrap />
       </div>
