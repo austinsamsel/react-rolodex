@@ -1,17 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Favorite from './Favorite.js'
+import FavoriteWrap from '../containers/FavoriteWrap.js'
 
 export default ( props ) => {
   const contact = props;
-  const mark_as_favorite = props.mark_as_favorite;
   return(
     <tr>
       <td>
-        <Favorite 
-          contact={contact}
-          mark_as_favorite={mark_as_favorite} 
-        />
+        <FavoriteWrap contact={contact} />
       </td>
       <td>
         <strong>
