@@ -5,9 +5,9 @@ import {
   Link,
   Redirect
 } from 'react-router-dom'
-import Tasks from './Tasks.js'
-import ContactsPage from './ContactsPage.js'
-import ContactPageSingle from './ContactPageSingle.js'
+import Tasks from '../components/Tasks.js'
+import ContactsPage from '../components/ContactsPage.js'
+import ContactPageSingle from '../components/ContactPageSingle.js'
 import _ from 'lodash'
 require('es6-promise').polyfill()
 require('isomorphic-fetch')
