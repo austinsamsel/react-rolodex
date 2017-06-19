@@ -8,7 +8,6 @@ import {
 import Tasks from '../components/Tasks.js'
 import ContactsPageWrap from '../containers/ContactsPageWrap.js'
 import ContactPageSingle from '../components/ContactPageSingle.js'
-import _ from 'lodash'
 require('es6-promise').polyfill()
 require('isomorphic-fetch')
 
@@ -17,57 +16,15 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      contacts: [],
       favorites: [],
-      search_query: '',
-      sort_order: null,
     }
   }
 
   componentDidMount() {
-    this.loadContacts();
+    //this.loadContacts();
   }
 
   render() {
-
-    // search
-    const search_check = (query, field) => {
-      const field_string = field.toString();
-      if (!query){
-        query = ' ';
-      }
-      return field_string.toLowerCase().indexOf(query.toLowerCase()) > -1;
-    }
-    
-    let matches = [];
-    this.state.contacts.map((contact, i) => {
-      let contact_fields = Object.keys(contact)
-      contact_fields.map((key, i) => {
-        if (search_check(this.state.search_query, contact[key])) {
-          matches.push(contact)
-        }
-        return false;
-      })
-      return false;
-    })
-
-    // contacts assignment
-    // search:
-    let contacts = this.state.contacts;
-    if (this.state.search_query) {
-      contacts = _.uniq(matches)
-    }
-    // sort order:
-    if (this.state.sort_order === true){
-      contacts.sort((a, b) => {
-        return a.name > b.name;
-      })
-    }
-    if (this.state.sort_order === false){
-      contacts.sort((a, b) => {
-        return a.name < b.name;
-      })
-    }
 
     const MenuLink = ({ label, to, activeOnlyWhenExact }) => (
       <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
@@ -112,50 +69,46 @@ class App extends Component {
     );
   }
 
-  match_contact = (params) => {
-    console.log('yooo', params)
-  }
+  // loadContacts = () => {
+  //   let counter = 1;
+  //   const call_5_x = () =>
+  //   {
+  //     this.fetchContacts();
+  //     if (counter < 5){
+  //       counter++
+  //       window.setTimeout(call_5_x, 500);
+  //     }
+  //   }
+  //   call_5_x();
+  // }
 
-  loadContacts = () => {
-    let counter = 1;
-    const call_5_x = () =>
-    {
-      this.fetchContacts();
-      if (counter < 5){
-        counter++
-        window.setTimeout(call_5_x, 500);
-      }
-    }
-    call_5_x();
-  }
-
-  fetchContacts = () => {
-    fetch('https://randomuser.me/api/')
-    .then(response => {
-        if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(contacts => {
-      const contact = contacts.results[0]
-      const contact_format = {
-        id: Date.now(),
-        name: `${contact.name.first} ${contact.name.last}`,
-        phone: `${contact.cell}`,
-        email: `${contact.email}`,
-        address: `${contact.location.street}, ${contact.location.city} ${contact.location.state} ${contact.location.postcode}`,
-      }
-      const contact_array = this.state.contacts
-      contact_array.push(contact_format)
-      this.setState({
-        contacts: contact_array
-      })
-    })
-    .catch(() => {
-      console.warn('error')
-    })
-  }
+  // fetchContacts = () => {
+  //   fetch('https://randomuser.me/api/')
+  //   .then(response => {
+  //       if (response.status >= 400) {
+  //       throw new Error("Bad response from server");
+  //     }
+  //     return response.json();
+  //   })
+  //   .then(contacts => {
+  //     const contact = contacts.results[0]
+  //     const contact_format = {
+  //       id: Date.now(),
+  //       name: `${contact.name.first} ${contact.name.last}`,
+  //       phone: `${contact.cell}`,
+  //       email: `${contact.email}`,
+  //       address: `${contact.location.street}, ${contact.location.city} ${contact.location.state} ${contact.location.postcode}`,
+  //     }
+  //     const contact_array = this.state.contacts
+  //     contact_array.push(contact_format)
+  //     this.setState({
+  //       contacts: contact_array
+  //     })
+  //   })
+  //   .catch(() => {
+  //     console.warn('error')
+  //   })
+  // }
 
   favorite = (contact, id) => {
     if (contact.id !== id) {
@@ -175,21 +128,6 @@ class App extends Component {
     })
     this.setState({contacts: contacts})
     this.filter_favorites();
-  }
-
-  filter_favorites = () => {
-    const favorites = this.state.contacts.filter(contact => {
-      return contact.favorite === true;
-    })
-    this.setState({ favorites: favorites })
-  }
-
-  search_query = (query) => {
-    this.setState({search_query: query})
-  }
-
-  sort = () => {
-    this.setState({sort_order: !this.state.sort_order});
   }
 
 }
