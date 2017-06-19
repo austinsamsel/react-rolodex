@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import ContactList from './ContactList.js'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom'
 import Tasks from './Tasks.js'
-import Search from './Search.js'
-import Sort from './Sort.js'
+import ContactsPage from './ContactsPage.js'
+import ContactPageSingle from './ContactPageSingle.js'
 import _ from 'lodash'
 require('es6-promise').polyfill()
 require('isomorphic-fetch')
@@ -64,33 +69,62 @@ class App extends Component {
       })
     }
 
+    const MenuLink = ({ label, to, activeOnlyWhenExact }) => (
+      <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
+        <Link to={to}  style={match ? {color:'darkturquoise', fontWeight:'bold'} : {color:'deeppink'}}>
+          {label}
+        </Link>
+      )}/>
+    )
+
     return (
-      <div className="container">
-        <div>
-          <h3>Contacts</h3>
-          <div className="float-right">
-            <Sort
-              sort={this.sort}
-              sort_order={this.state.sort_order}
-            />
+      <Router>
+        <div className="container">          
+          <div>
+            <MenuLink activeOnlyWhenExact={true} to="/" label=" 🏡 Home"/>
+            <MenuLink to="/contacts" label=" 😺 Contacts" />
           </div>
-          <Search 
-            search_query={this.search_query} 
+          <hr/>
+          <Route exact path="/" component={Tasks}  />
+          <Route path="/contact/:id" 
+            render={(match) => {
+              return (
+                <ContactPageSingle
+                  match={match}
+                /> )
+              }
+            }  
           />
-          <ContactList 
-            contacts={contacts} 
-            mark_as_favorite={this.mark_as_favorite}
+          <Route 
+            path="/contacts" 
+            render={() => {
+              return (
+                <ContactsPage
+                  contacts={contacts}   
+                  search_query={this.state.search_query}
+                  favorites={this.state.favorites}
+                  mark_as_favorite={this.mark_as_favorite}
+                  sort={this.sort}
+                  sort_order={this.state.sort_order}
+                /> )
+              }
+            } 
           />
-          <h3>Favorites</h3>
-          <ContactList 
-            contacts={this.state.favorites} 
-            mark_as_favorite={this.mark_as_favorite}
+          <Route 
+            render={() => {
+              return (
+                  <Redirect to="/contacts" /> 
+                )
+              }
+            }
           />
         </div>
-        <hr />
-        <Tasks />
-      </div>
+      </Router>
     );
+  }
+
+  match_contact = (params) => {
+    console.log('yooo', params)
   }
 
   loadContacts = () => {
@@ -166,9 +200,7 @@ class App extends Component {
   }
 
   sort = () => {
-    console.log('clicked')
     this.setState({sort_order: !this.state.sort_order});
-    console.log(this.state.sort_order)
   }
 
 }

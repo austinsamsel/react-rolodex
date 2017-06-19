@@ -16,6 +16,7 @@ export default (contact) => {
       </code></pre></li>
       </ul>
       <hr />
+
       <h3 id="module2tasks">Module #2 Tasks</h3>
       <h4 id="basic-1">Basic</h4>
       <ul>
@@ -40,6 +41,19 @@ export default (contact) => {
       <li><span role="img" aria-label="checkmark">✅</span>  Add button to sort the contacts alphabetically. Clicking it should toggle sorting direction.</li>
       <li><span role="img" aria-label="checkmark">✅</span>  Add an icon the the button (↑/↓) to indicate sorting direction.</li>
       </ul>
+
+      <h3 id="module4tasks">Module #4 Tasks</h3>
+      <h4 id="basic-3">Basic</h4>
+      <ul>
+      <li><span role="img" aria-label="checkmark">✅</span>  Setup the Router with two pages: home page with title and message and contact list page (the current view)</li>
+      <li><span role="img" aria-label="checkmark">✅</span>  Create navigation component with links that displays on both pages</li>
+      </ul>
+      <h4 id="advanced-2">Advanced</h4>
+      <ul>
+      <li><span role="img" aria-label="checkmark">✅</span>  The active link should be visually distinct</li>
+      <li><span role="img" aria-label="checkmark">✅</span>  Add a route for single contact page</li>
+      </ul>
+      <hr />
 
       <hr />
     </div>
