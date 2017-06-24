@@ -8,3 +8,5 @@ use `git checkout` to see the app at each state after completing the modules.
 slides: http://htps-workshop-slides.surge.sh/#/
 
 live demo: https://htps-rolodex-react.surge.sh/
+
+questions? create a new issue.
